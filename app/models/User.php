@@ -1,6 +1,6 @@
 <?php
 
-class Reservation {
+class User {
     static public function create($data)
     {
         // code sql pour creation

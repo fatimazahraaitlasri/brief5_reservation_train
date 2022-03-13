@@ -10,8 +10,10 @@ class  ReservationController
     }
     public function update()
     {
+        
     }
     public  function index()
     {
+        echo "index methode";
     }
 }

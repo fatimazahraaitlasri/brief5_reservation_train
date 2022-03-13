@@ -7,6 +7,7 @@ class User {
     }
     static public function fetchAll()
     {
-        // return all reservations from table sql
+        // select * from user// return all reservations from table sql
     }
 }
+

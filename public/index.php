@@ -1,7 +1,11 @@
  <?php
 
- require_once dirname(__DIR__)."/app/configs/index.php";
- 
+    require_once dirname(__DIR__) . "/app/configs/index.php";
+    require_once "autoload.php";
+
+
+
+
 
 
     $params = ["home"];
@@ -14,7 +18,7 @@
     $controller = ucfirst($params[0]) . "Controller";
     $controllerPath = dirname(__DIR__) . "/app/controllers/$controller.php";
     if (file_exists($controllerPath)) {
-        require_once($controllerPath); 
+        require_once($controllerPath);
         if (class_exists($controller)) {
             $objet = new $controller;
             if (isset($params[1])) {

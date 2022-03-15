@@ -17,18 +17,8 @@
 
 <body>
     <!-- $data = [["nom" =>  "said"],["nom" =>  "fatimazahra"]] -->
-    
-    <div>
-        <?php foreach ($data  as  $d) : ?>
-
-            <ul>
-                <li> <?= $d['id'] ?> </li>
-            </ul>
-        <?php endforeach; ?>
 
 
-
-    </div>
     <section class="bg-light">
         <nav class="container d-flex justify-content-between ligne-items-center ">
 
@@ -50,18 +40,69 @@
 
         </nav>
 
+    
+        <!-- /////////////////////////// -->
+
+
+
+
+
+
+
+
+
+        <!-- echo '<pre>', print_r($key["id"]), '</pre>'; -->
+        }
+
+
     </section>
     <section class="containerForm">
-        <form action="" class="formReservation  form-control" method="POST">
 
-            <input type="text" name="villeD" placeholder="ville de départ">
-            <input type="text" name="villeA" placeholder="ville d'arrivé">
-            <input type="text" name="heurD" placeholder="heur de départ ">
-            <input type="text" name="heurA" placeholder="heur de d'rrivé ">
+
+        <form action="" class="formReservation  form-control" method="GET">
+
+            <input type="text" name="garDepart" placeholder="gar de départ">
+            <input type="text" name="garArrive" placeholder="gar d'arrivée">
+            <input type="datetime-local" name="dateDebut" placeholder="date de départ">
+
             <button class="btn btn-secondary" name="submit">recherch </button>
 
         </form>
     </section>
+    <div>
+        <?php
+        //  echo "ana id diali". $voyageExist["id"] ."bghit nmchi l".  $voyageExist["villeArrive"] ."men". $voyageExist["villeDepart"];
+        ?>
+    </div>
+
+    </section>
+    <section class="containerVoyahe">
+        <!-- /////////////////////////// -->
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">name</th>
+                    <th scope="col">date de départ</th>
+                    <th scope="col">date d'arriver</th>
+                    <th scope="col">prix</th>
+                </tr>
+            </thead>
+            <?php
+            foreach ($voyageExist as $key) : ?>
+                <tbody>
+                    <tr>
+                        
+                        <td><?= $key["nom"] ?></td>
+                        <td><?= $key["dateDebut"] ?></td>
+                        <td><?= $key["dateArrive"] ?></td>
+                        <td><?= $key["prix"] ?></td>
+                    </tr>
+
+                </tbody>'
+            <?php endforeach; ?>
+
+        </table>
 
 </body>
 

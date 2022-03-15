@@ -5,7 +5,7 @@ function view($path, $data = [])
 
     extract($data);
     $path = ltrim($path, "/");
-    include dirname(__DIR__) . "/resources/views/$path.php"; 
+    include dirname(__DIR__) . "/resources/views/$path.php";
 }
 // show if request is POST 
 function isPostRequest()
@@ -13,16 +13,16 @@ function isPostRequest()
     return $_SERVER["REQUEST_METHOD"] === "POST";
 }
 
-$data = ["username" => "TEST"];
+// $data = ["username" => "TEST"];
 
-verify(["username", "password"], $data);
+// verify(["username", "password"], $data);
 
 
 
-function verify($required, $data): bool
+function verify($requiredFields, $data): bool
 {
-    foreach ($required as $value) {
-        if (empty($data[$value])) {
+    foreach ($requiredFields as $field) {
+        if (empty($data[$field])) {
             return false;
         }
     }
@@ -42,4 +42,21 @@ function ConnexionDataBase()
     } catch (PDOException $e) {
         echo "Connection failed: " . $e->getMessage();
     }
+}
+
+
+
+function isLoggedIn()
+{
+    if (!isset($_SESSION)) {
+        session_start();
+    }
+    return isset($_SESSION["userId"]);
+}
+
+
+
+function redirect($path)
+{
+    header("location: /brieftrain/$path");
 }

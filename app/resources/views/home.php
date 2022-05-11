@@ -23,42 +23,38 @@
     <?php component("Navigation"); ?>
     <section class="containerForm">
         <!-- <h1>Je réserve mon billet de train au maroc</h1> -->
-    
+        <h1>Je réserve mon billet de train </h1>
         <form action="" class="formReservation  form-control" method="GET">
             <div>
                 <div class="divForm1">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Ville de départ</label>
                     <input type="text" name="villeDepart" placeholder="Ville de départ">
                 </div>
+
+            </div>
+            <div>
                 <div class="divForm1">
                     <label for="staticEmail" class="col-sm-2 col-form-label">Ville d'arrivée</label>
                     <input type="text" name="villeArrive" placeholder="Ville d'arrivée">
                 </div>
             </div>
+
+
             <div>
                 <div class="divForm1">
                     <label for="staticEmail" class="col-sm-2 col-form-label">date de départ</label>
-                    <input type="date" name="dateDebut" placeholder="date de départ" >
+                    <input type="date" name="dateDebut" placeholder="date de départ">
                     <!-- min="<?= date("Y-m-d\Th:i"); ?>" -->
                 </div>
-                
+
             </div>
 
 
 
-            <div>
-                <div class="divForm1">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Mon confort</label>
-                    <input type="text" placeholder="">
-                </div>
-                <div class="divForm1">
-                    <label for="staticEmail" class="col-sm-2 col-form-label">Voyageurs</label>
-                    <input type="text" placeholder="">
-                </div>
-            </div>
+
 
             <div class="divForm1">
- 
+
                 <button type="submit" class="ant-btn">
 
                     <i aria-label="icon: search" class="anticon anticon-search">
@@ -130,26 +126,7 @@
         </section>
     <?php endif; ?>
 
-    <!-- <section class="test">
 
-    <div class="paragraph paragraph--type--offer-element paragraph--view-mode--default">
-<div class="field field--name-field-media field--type-entity-reference field--label-hidden field--item"> 
-    <img width="120" height="120" alt="OUIGO GRANDE VITESSE &amp; OUIGO TRAIN CLASSIQUE" loading="lazy" class="img-responsive lazyloaded" data-src="https://ouigo-p-cdn.azureedge.net/edito-p-v3-assets/styles/offer_item/azblob/2022-03/logov2.png?itok=JE0Qmy6W" typeof="foaf:Image" src="https://ouigo-p-cdn.azureedge.net/edito-p-v3-assets/styles/offer_item/azblob/2022-03/logov2.png?itok=JE0Qmy6W">
-</div>
-<h3 class="field field--name-field-title-formated field--type-text-long field--label-hidden field--item" aria-controls="accordion-panel-0" id="accordion-title-0">
-    <p>
-        <strong>Billets de train&nbsp;
-            <span class="blue">Low-cost</span>
-        </strong>
-    </p>
-</h3>
-<div class="field field--name-field-description field--type-text-long field--label-hidden field--item" id="accordion-panel-0">
-    <p><span><span><span><span><span><span><span><span>Dès 10€ pour les adultes et 5€ pour les enfants, voyagez avec <span class="pink">OUIGO GRANDE VITESSE</span> et <uspan class="blue">OUIGO TRAIN CLASSIQUE</uspan> dans toute la France&nbsp;! Réservez plusieurs mois à l’avance ou jusqu’à 1h avant le départ, via l’appli voyages ou le site, et profitez de <uspan class="blue">billets de train low cost</uspan>. </span></span></span></span></span></span></span></span><strong><span><span><span><span> </span></span></span></span></strong></p>
-</div>
-<div class="field field--name-field-station field--type-link field--label-hidden field--item"><a href="https://www.ouigo.com/acheter-billet-train-tgv-pas-cher">En savoir plus</a></div>
-</div>
-
-</section> -->
 
 
 </body>

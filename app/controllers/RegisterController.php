@@ -6,7 +6,7 @@ class  RegisterController
 
     public function __construct()
     {
-        $this->userModel = new User(); 
+        $this->userModel = new User();
     }
 
 
@@ -17,7 +17,7 @@ class  RegisterController
 
     {
         if (isPostRequest()) {
-            $data = ["role" => CLIENT, ...$_POST];
+            $data = [...$_POST, "role" => CLIENT, "password" => password_hash($_POST["password"], PASSWORD_ARGON2I)];
 
             $userId = $this->userModel->create($data);
 
@@ -40,7 +40,7 @@ class  RegisterController
 
             // redreict to desired voyage resveration
 
-            $data = ["role" => GUEST, ...$_POST];
+            $data = [...$_POST, "role" => GUEST];
 
             $userId = $this->userModel->create($data);
 
@@ -49,7 +49,7 @@ class  RegisterController
                 return redirect("reservation/create/$voyageId");
             }
 
-            return view("guest", ["error" => "account ot created"]);
+            return view("guest", ["error" => "account not created"]);
         }
         // if (isLoggedIn()) {
         //     return redirect("/");

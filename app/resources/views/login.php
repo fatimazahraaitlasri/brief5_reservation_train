@@ -16,6 +16,9 @@
         <div class="col-md-6 mx-auto">
             <div class="card card-body bg-light mt-5">
                 <h1>this is login page</h1>
+                <?php if(isset($error)): ?>
+                    <p><?= $error?></p>
+                    <?php endif;?>
                 <form action="" method="POST" class="test">
                     <div class="form-group">
                         <label for="staticEmail" class=" col-form-label">username</label><br>

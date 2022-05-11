@@ -6,11 +6,7 @@
 
 class HomeController
 {
-    private $ServerName = "localhost";
-    private $UserName = "root";
-    private $password = "";
-    private $dbname = "train";
-    private $conn;
+
 
     private $voyageModel;
     public function __construct()
@@ -23,12 +19,15 @@ class HomeController
     public function index()
     {
         // check if GET has date debut
-        if (count($_GET) > 0) {
+        if (count($_GET) > 0) { 
             $_GET["deleted"] = 0;
         }
         $filterage = implode(" and ", array_map(function ($key) {
-            if ($key == "dateDebut") {
+            if ($key == "dateDebut") {   
                 return "$key>=:today and $key<=:tomorrow";
+            }
+            if ($key == "deleted") {
+                return "voyage.deleted = :$key";
             }
             return "$key=:$key";
         }, array_keys($_GET)));
@@ -40,17 +39,15 @@ class HomeController
             $_GET["today"] = date("Y-m-d H:i:s", strtotime($date));
             unset($_GET["dateDebut"]);
         }
-        if ($filterage !== "") {
-            $query = " join train on train.id = trainId  where $filterage ";
-            // $tableVoyage = $this->voyageModel->fetchAllWithColumnRename("");
-            $voyages = $this->voyageModel->fetchAllWithColumnRename($query, "*,voyage.id as voyageId, train.id as train_id",  $_GET);
-            // $id = $voyages["id"];
-            // $idt = $voyages["trainId"];
-            // $train = $this->trainModel->fetchAllWithColumnRename("where id = :id","nbrPlace",["id"=>$idt]);
-            // $condition = $this->ReservationModel->fetchAllWithColumnRename("where id = :id","sum('nbrPlace') as 'somme'",["id"=>$id]);
-            var_dump($voyages);
-            die();
-
+        if ($filterage !== "") {   
+            $query = " left  join train on train.id = trainId 
+            left join reservations on reservations.voyageId = voyage.id 
+            where $filterage group by voyage.id";
+            $voyages = $this->voyageModel->fetchAllWithColumnRename($query, "*,voyage.id as voyageId,sum(reservations.nbrPlace) as somme,train.nbrPlace as maxPlace, train.id as train_id",  $_GET);
+            $voyages = array_filter($voyages, function ($v) {
+                return $v["somme"] < $v["maxPlace"];
+            });
+          
             return view("home", ["voyages" => $voyages]);
         }
         view("home");

@@ -19,9 +19,9 @@ class LoginController
         if (isPostRequest() && verify(["username", "password"], $_POST)  )
         {
             $user = $this->userModel->fetchOne("where username = :username", ["username" => $_POST["username"]]);
-            if (!$user || $user["password"] !== $_POST["password"])
+            if (!$user || !password_verify($_POST["password"], $user["password"]))
             {
-                return view("login");
+                return view("login", ["error" => "wrong password or email"]);
             }   
             
             createUserSession($user);

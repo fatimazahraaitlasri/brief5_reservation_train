@@ -25,8 +25,8 @@ class UserController
         if (!isLoggedIn()) {
             return redirect("/login");
         }
-        $query="join voyage on voyage.id = voyageId where userId=:id and deleted =:deleted";
-        $allResrvation = $this->reservationModel->fetchAllWithColumnRename($query,"*,reservations.id as reservationsId", ["id" => currentUserId(), "deleted" => 0]);
+        $query="join voyage on voyage.id = voyageId where userId=:id and reservations.deleted =:deleted";
+        $allResrvation = $this->reservationModel->fetchAllWithColumnRename($query,"*,reservations.id as reservationsId, voyage.deleted as voyageDeleted", ["id" => currentUserId(), "deleted" => 0]);
         return view("history", ["history" => $allResrvation]);
         
     }

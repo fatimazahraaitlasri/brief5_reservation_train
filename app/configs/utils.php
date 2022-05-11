@@ -80,6 +80,11 @@ function isClient()
     return currentUserRole() === CLIENT;
 
 }
+function isGuest()
+{
+    return currentUserRole() === GUEST;
+
+}
 
 
 /**
@@ -100,6 +105,8 @@ function currentUserId()
     isLoggedIn();
     return $_SESSION["userId"] ?? null; // nullish coalascing  
 }
+
+
 
 /** 
  * créer une session pour l'utilisateur par son id

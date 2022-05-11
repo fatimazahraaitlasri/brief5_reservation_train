@@ -2,7 +2,7 @@
 
 
 
-class  LoginController
+class LoginController
 {
 
     private $userModel;
@@ -11,26 +11,24 @@ class  LoginController
     {
         $this->userModel = new User();
     }
-
+    
 
     public function index()
     {
 
-        if (isPostRequest() && verify(["username", "password"], $_POST)) {
+        if (isPostRequest() && verify(["username", "password"], $_POST)  )
+        {
             $user = $this->userModel->fetchOne("where username = :username", ["username" => $_POST["username"]]);
-
-
-            if (!$user || $user["password"] !== $_POST["password"]) {
+            if (!$user || $user["password"] !== $_POST["password"])
+            {
                 return view("login");
-            }
-
-
-            session_start();
-            $_SESSION["userId"] = $user["id"];
-            redirect("voyage");
-        } else {
+            }   
+            
+            createUserSession($user);
+            return view("home");
+        }
+        else{
             return view("login");
         }
     }
 }
-// comparaison de cahier de charge de chaque projet

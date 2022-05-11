@@ -8,7 +8,7 @@
 </head>
 <body>
     <div>
-        hello from user
+        hello from user 
     </div>
     <form>
   <div class="mb-3">
@@ -18,7 +18,7 @@
   <div class="mb-3">
     <label for="exampleInputPassword1" class="form-label">date Arrive</label>
     <input type="password" class="form-control" id="exampleInputPassword1">
-  </div>
+  </div>       
   <div class="mb-3 form-check">
     <label class="form-check-label" for="exampleCheck1">ville depart</label>
     <input type="checkbox" class="form-check-input" id="exampleCheck1">

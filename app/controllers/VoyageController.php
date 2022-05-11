@@ -14,7 +14,11 @@ class VoyageController
     public function index()
     {
         // return all voyages 
-        $voyages = $this->voyageModel->fetchAll();
+        $idVoyage = currentUserId();
+        if (!isAdmin()) {
+            return view("404");
+        }
+        $voyages = $this->voyageModel->fetchAllWithColumnRename("where adminId = :id and deleted=:deleted", "*", ["id" => 1 ,"deleted"=>0]);
         return view("voyage/voyageHome", ["voyages" => $voyages]);
     }
 
@@ -27,8 +31,9 @@ class VoyageController
 
 
         if (isPostRequest()) {
-            $voyage = $this->voyageModel->create($_POST);
-            if($voyage){
+            $data = [...$_POST, "adminId" => currentUserId()];
+            $voyage = $this->voyageModel->create($data);
+            if ($voyage) {
                 redirect("voyage");
             }
         } else {
@@ -36,4 +41,21 @@ class VoyageController
             return view("voyage/createVoyage", ["trains" => $trains]);
         }
     }
+    public function delete($id)
+    {
+
+        if (!isLoggedIn()) {
+            return redirect("/login");
+        }
+        $delete = $this->voyageModel->fetchById($id);
+        if (!$delete) {
+            return view("404");
+        }
+        if ($delete["adminId"] != currentUserId()) {
+            return redirect("/");
+        }
+        $this->voyageModel->softDeleteById($id);
+        return redirect("/voyage");
+    }
+    
 }

@@ -12,7 +12,7 @@
                     <li><a href="<?= createLink("/login") ?>">Login</a></li>
                     <li><a href="<?= createLink("/register") ?>">Sign up</a></li>
                 <?php endif; ?>
-
+                
                 <?php if (isLoggedIn() && !isAdmin()) : ?>
                     <li><a href="<?= createLink("/") ?>">Home</a></li>
                     <?php if (!isGuest()) : ?>
